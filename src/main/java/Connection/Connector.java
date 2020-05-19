@@ -27,5 +27,8 @@ public class Connector {
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();
     }
+    public static void close(){
+        ds.close();
+    }
 }
 

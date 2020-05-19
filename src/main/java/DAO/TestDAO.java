@@ -34,10 +34,10 @@ public class TestDAO implements BaseDAO<Test> {
         ResultSet resultSet = null;
         int id = 0;
         try (Connection connection = Connector.getConnection()) {
-            String query = "select idTest from Tests where name like ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+           // String query = "select idTest from Tests where name like ?";
+            PreparedStatement preparedStatement = connection.prepareStatement("select idTest from Tests where name like ?");
             preparedStatement.setString(1, test.getName());
-            resultSet = preparedStatement.executeQuery(query);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 id = resultSet.getInt(1);
             }

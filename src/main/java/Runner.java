@@ -9,6 +9,7 @@ import beans.Test;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.sql.*;
+//import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Runner {
@@ -18,6 +19,7 @@ public class Runner {
         TestDAO testDAO = new TestDAO();
         ResultDAOImpl resultDAO = new ResultDAOImpl();
         Result result;
+      //  LocalTime localTime = L
 
         try {
             Scanner scanner = new Scanner(new FileReader(Constants.PATH));
@@ -28,10 +30,10 @@ public class Runner {
                 studentDAO.create(student);
                 testDAO.create(test);
                 result = new Result(studentDAO.getStudentId(student),testDAO.getTestId(test),
-                        Date.valueOf(values[3]),Integer.parseInt(values[4]));//вытащить айди для резалт
+                        Date.valueOf(values[2]),Integer.parseInt(values[3]));//вытащить айди для резалт
                 resultDAO.create(result);
             }
-
+            System.out.println("all upload");
 
         } catch (
                 FileNotFoundException e) {

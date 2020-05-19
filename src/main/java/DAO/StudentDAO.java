@@ -16,6 +16,7 @@ public class StudentDAO implements BaseDAO<Student> {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO logins(name ) values (?)");
             preparedStatement.setString(1, object.getName());
             preparedStatement.execute();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -24,10 +25,10 @@ public class StudentDAO implements BaseDAO<Student> {
         ResultSet resultSet = null;
         int id = 0;
         try (Connection connection = Connector.getConnection()) {
-            String query = "select Idlogin from Tests where name like ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+          //  String query = "select Idlogin from logins where name like ?"; //вынести в файнал статик переменную
+            PreparedStatement preparedStatement = connection.prepareStatement("select Idlogin from logins where name like ?");
             preparedStatement.setString(1, student.getName());
-            resultSet = preparedStatement.executeQuery(query);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 id = resultSet.getInt(1);
             }

@@ -11,12 +11,10 @@ import java.sql.SQLException;
 
 public class StudentDAO implements BaseDAO<Student> {
     public void create(Student object) {
-        try {
-            Connection connection = Connector.getConnection();
+        try(Connection connection = Connector.getConnection();) {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO logins(name ) values (?)");
             preparedStatement.setString(1, object.getName());
             preparedStatement.execute();
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
